@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MuscleGroupsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/me', 'index')->name('user.me');
     });
 
+    Route::resource('muscleGroups', MuscleGroupsController::class);
 });
 
 Route::get('notAuthorized', function () {

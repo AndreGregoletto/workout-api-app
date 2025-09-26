@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('cpf', 11)->unique();
             $table->string('phone', 15)->unique();
             $table->boolean('notification')->default(1);
+            $table->boolean('admin')->default(0);
             $table->boolean('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
