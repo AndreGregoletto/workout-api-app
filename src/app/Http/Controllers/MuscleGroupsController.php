@@ -6,7 +6,7 @@ use App\Http\Requests\MuscleGroups\CreateRequest;
 use App\Http\Requests\MuscleGroups\UpdateRequest;
 use App\Models\MuscleGroup;
 use Exception;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MuscleGroupsController extends Controller
 {
@@ -89,7 +89,10 @@ class MuscleGroupsController extends Controller
     {
         try {
             $name = $request->name ?? null;
-            $name = MuscleGroup::whereName($name)->whereStatus(1)->where('id', '!=', $id)->first();
+            
+            if(!is_null($name)){
+                $name = MuscleGroup::whereName($name)->whereStatus(1)->where('id', '!=', $id)->first();
+            }
     
             if($name){
                 throw new Exception("Já existe um grupo muscular com esse nome", 1);
@@ -117,6 +120,10 @@ class MuscleGroupsController extends Controller
     public function destroy(string $id)
     {
         try {
+            if(Auth::user()->admin != 1){
+                throw new Exception("Você não tem permissão para realizar essa ação", 1);
+            }
+
             $muscle = MuscleGroup::find($id);
 
             if(is_null($muscle)){

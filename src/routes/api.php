@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ExerciseController;
+use App\Http\Controllers\MuscleController;
+use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\MuscleGroupsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +30,9 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::resource('muscleGroups', MuscleGroupsController::class);
+    Route::resource('muscle',       MuscleController::class);
+    Route::resource('workout',      WorkoutController::class);
+    Route::resource('exercise',     ExerciseController::class);
 });
 
 Route::get('notAuthorized', function () {

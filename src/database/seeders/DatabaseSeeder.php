@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            MuscleGroupSeeder::class,
+            MusclesSeeder::class,
             UserSeeder::class
         ]);
         // php artisan db:seed
