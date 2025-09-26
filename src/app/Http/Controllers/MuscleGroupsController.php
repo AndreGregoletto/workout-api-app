@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MuscleGroups\CreateRequest;
+use App\Http\Requests\MuscleGroups\UpdateRequest;
 use App\Models\MuscleGroup;
 use Exception;
 use Illuminate\Http\Request;
@@ -84,9 +85,30 @@ class MuscleGroupsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, string $id)
     {
-        dd($request->all());
+        try {
+            $name = $request->name ?? null;
+            $name = MuscleGroup::whereName($name)->whereStatus(1)->where('id', '!=', $id)->first();
+    
+            if($name){
+                throw new Exception("Já existe um grupo muscular com esse nome", 1);
+            }
+
+            $muscle = MuscleGroup::find($id);
+
+            if(is_null($muscle)){
+                throw new Exception("Nenhum grupo muscular encontrado", 1);
+            }
+
+            $muscle->update($request->all());
+
+            return response()->json(['message' => 'Grupo muscular atualizado com sucesso'], 200);
+
+        }catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+        
     }
 
     /**
