@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Workout;
 
 class User extends Authenticatable
 {
@@ -28,6 +29,11 @@ class User extends Authenticatable
         'admin',
         'status'
     ];
+
+    public function workoutActive()
+    {
+        return $this->hasMany(Workout::class, 'user_id', 'id')->where('status', 1);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

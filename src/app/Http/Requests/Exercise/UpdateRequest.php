@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Requests\Muscle;
+namespace App\Http\Requests\Exercise;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Auth;
 
-class CreateRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return Auth::user()->admin == true;
+        return Auth::user()->status == true;
     }
 
     /**
@@ -25,10 +25,10 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'            => 'required|string|max:255|unique:muscles',
-            'description'     => 'nullable|string|max:255',
-            'image'           => 'nullable|string|max:255',
-            'muscle_group_id' => 'required|exists:muscle_groups,id',
+            'name'       => 'sometimes|string|max:255|unique:exercises',
+            'img'        => 'sometimes|nullable|string|max:255',
+            'video_url'  => 'sometimes|nullable|string|max:255',
+            'status'     => 'sometimes|boolean'
         ];
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Muscle;
+namespace App\Http\Requests\Exercise;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
@@ -14,7 +14,7 @@ class CreateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->admin == true;
+        return Auth::user()->status == true;
     }
 
     /**
@@ -25,10 +25,11 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'            => 'required|string|max:255|unique:muscles',
-            'description'     => 'nullable|string|max:255',
-            'image'           => 'nullable|string|max:255',
-            'muscle_group_id' => 'required|exists:muscle_groups,id',
+            'name'       => 'required|string|max:255|unique:exercises',
+            'img'        => 'nullable|string|max:255',
+            'video_url'  => 'nullable|string|max:255',
+            'muscle_id'  => 'required|exists:muscles,id',
+            'workout_id' => 'required|exists:workouts,id',
         ];
     }
 

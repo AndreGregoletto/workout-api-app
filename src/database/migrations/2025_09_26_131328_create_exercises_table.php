@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->string('name');                  
             $table->string('image')->nullable();     
             $table->string('video_url')->nullable(); 
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('workout_id')->constrained('workouts')->onDelete('cascade');
             $table->foreignId('muscle_id')->constrained('muscles')->onDelete('cascade');
             $table->boolean('status')->default(1);   

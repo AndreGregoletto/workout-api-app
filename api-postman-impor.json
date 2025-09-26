@@ -120,7 +120,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"andre@email.com\",\r\n  \"password\": \"12345678\"\r\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{url-api}}/{{user}}/me",
@@ -480,7 +480,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{url-api}}/muscle/2/edit",
@@ -513,7 +518,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\":\"supino reto Smith\",\r\n  \"description\": \"Fazer na máquina smith\",\r\n  \"muscle_group_id\":1,\r\n  \"status\":1\r\n}",
+							"raw": "\r\n{\r\n    \"name\" : \"Supino Reto com Barra\",\r\n    \"status\":1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -587,7 +592,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "\r\n{\r\n    \"name\":\"PPL\",\r\n    \"image\":\"PUSH PULL LEGS\",\r\n    \"description\":\"Treino para ganhar volume muscular\",\r\n    \"cicle\": \"3/1\",\r\n    \"duration\":\"12\",\r\n    \"status\":\"1\"\r\n}",
+							"raw": "\r\n{\r\n    \"name\":\"PPL\",\r\n    \"image\":\"PUSH PULL LEGS\",\r\n    \"description\":\"Treino para ganhar volume muscular\",\r\n    \"cicle\": \"3\",\r\n    \"duration\":\"12\",\r\n    \"status\":\"1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -728,7 +733,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"PUSH PULL LEGS\",\r\n    \"image\":\"\",\r\n    \"status\":\"1\"\r\n}",
+							"raw": "{\r\n    \"cicle\": \"3\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -736,13 +741,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url-api}}/workout/3",
+							"raw": "{{url-api}}/workout/1",
 							"host": [
 								"{{url-api}}"
 							],
 							"path": [
 								"workout",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -836,7 +841,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "\r\n{\r\n    \"name\":\"PPL\",\r\n    \"image\":\"PUSH PULL LEGS\",\r\n    \"description\":\"Treino para ganhar volume muscular\",\r\n    \"cicle\": \"3/1\",\r\n    \"duration\":\"12\",\r\n    \"status\":\"1\"\r\n}",
+							"raw": "\r\n{\r\n    \"name\" : \"Supino Reto com barra\",\r\n    \"workout_id\" : \"1\",\r\n    \"muscle_id\" : \"1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -912,13 +917,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/exercise/3",
+							"raw": "{{url-api}}/exercise/1",
 							"host": [
 								"{{url-api}}"
 							],
 							"path": [
 								"exercise",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -947,13 +952,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/exercise/2/edit",
+							"raw": "{{url-api}}/exercise/1/edit",
 							"host": [
 								"{{url-api}}"
 							],
 							"path": [
 								"exercise",
-								"2",
+								"1",
 								"edit"
 							]
 						}
@@ -977,7 +982,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"status\":\"1\"\r\n}",
+							"raw": "\r\n{\r\n    \"name\" : \"Supino Reto\",\r\n    \"status\" : \"0\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

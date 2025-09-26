@@ -13,6 +13,7 @@ class Exercise extends Model
         'name',
         'image',
         'video_url',
+        'user_id',
         'workout_id',
         'muscle_id',
         'status',
