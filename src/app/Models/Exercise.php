@@ -16,6 +16,7 @@ class Exercise extends Model
         'user_id',
         'workout_id',
         'muscle_id',
+        'muscle_group_id',
         'status',
     ];
 

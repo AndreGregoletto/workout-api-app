@@ -14,7 +14,8 @@ return new class extends Migration {
             $table->string('video_url')->nullable(); 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('workout_id')->constrained('workouts')->onDelete('cascade');
-            $table->foreignId('muscle_id')->constrained('muscles')->onDelete('cascade');
+            $table->foreignId('muscle_group_id')->constrained('muscle_groups')->onDelete('cascade');
+            $table->foreignId('muscle_id')->nullable()->constrained('muscles')->onDelete('cascade');
             $table->boolean('status')->default(1);   
             $table->timestamps();
         });
