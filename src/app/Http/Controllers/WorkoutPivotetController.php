@@ -67,7 +67,32 @@ class WorkoutPivotetController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        try {
+            $aData = $request->all();
+
+            if($this->exercise->show($aData['exercise_id'])->getStatusCode() != 200){
+                throw new \Exception("Nenhum Exercicio encontrado", 1);
+            }
+
+            if($this->workout->show($aData['workout_id'])->getStatusCode() != 200){
+                throw new \Exception("Nenhum Treino encontrado", 1);    
+            }
+
+            $workoutPivotet = WorkoutPivotet::where('user_id', Auth::user()->id)
+                ->where('workout_id', $aData['workout_id'])
+                ->where('day_id', $aData['day_id'])
+                ->where('ordering', 1)
+                ->where('status', 1)
+                ->first();
+            
+            if($workoutPivotet){
+                throw new \Exception("Posição já ocupada", 1);
+            }
+
+        } catch (\Throwable $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
     }
 
     /**
