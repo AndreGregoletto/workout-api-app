@@ -4,12 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Grouper\CreateRequest;
 use App\Http\Requests\Grouper\UpdateRequest;
-use App\Models\Workout;
 use App\Models\WorkoutPivotet;
-use Database\Seeders\MuscleGroupSeeder;
 use Illuminate\Support\Facades\Auth;
-
-use function PHPSTORM_META\map;
 
 class WorkoutPivotetController extends Controller
 {
@@ -210,7 +206,12 @@ class WorkoutPivotetController extends Controller
 
         if($workoutPivotet){
             $workoutPivotet->map(function ($item) use (&$response) {
-                $response['exercises'][$item->day_id][] = $item?->exercise;
+                $group              = $item?->exercise;
+                $group              = $group->toArray();
+                $group['idPivotet'] = $item->id;
+                $group['ordering']  = $item->ordering;
+                
+                $response['exercises'][$item->day_id][] = collect($group);
             });
         }
 
