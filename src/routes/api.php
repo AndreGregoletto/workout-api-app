@@ -8,7 +8,6 @@ use App\Http\Controllers\MuscleGroupsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkoutPivotetController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 Route::get('/ping', function () {
     return response()->json(['message' => 'pong']);

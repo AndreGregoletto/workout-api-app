@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Muscle;
 
 class Exercise extends Model
 {
@@ -22,6 +23,11 @@ class Exercise extends Model
 
     public function muscle()
     {
-        return $this->belongsTo(Muscle::class);
+        return $this->hasOne(Muscle::class, 'id', 'muscle_id');
+    }
+    
+    public function muscleGroup()
+    {
+        return $this->hasOne(MuscleGroup::class, 'id', 'muscle_group_id');
     }
 }

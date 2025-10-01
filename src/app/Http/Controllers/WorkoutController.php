@@ -16,7 +16,7 @@ class WorkoutController extends Controller
      */
     public function index()
     {
-        return response()->json(Workout::select('name', 'description', 'image', 'cicle', 'duration')->whereStatus(1)->first());
+        return response()->json(Workout::select('id', 'name', 'description', 'image', 'cicle', 'duration')->whereStatus(1)->first());
     }
 
     /**
