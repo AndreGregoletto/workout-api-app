@@ -18,7 +18,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $user = User::select('id', 'name')
+        $user = User::select('id', 'name', 'social_name')
             ->with([
                 'workoutActive' => function ($query) {
                     $query->select('user_id', 'name', 'description', 'image', 'cicle', 'duration');

@@ -15,6 +15,9 @@ class Workout extends Model
         'description',
         'cicle',
         'duration',
+        'training_days',
+        'no_training_days',
+        'weekend',
         'user_id',
         'status'
     ];

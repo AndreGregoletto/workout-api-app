@@ -64,7 +64,7 @@ class WorkoutPivotetController extends Controller
                 'cicle'       => $oWorkout->cicle,
                 'duration'    => $oWorkout->duration,
             ];
-    
+
             if($workoutPivotet){
                 $workoutPivotet->map(function ($item) use (&$response) {
                     $response['exercises'][$item->day_id][] = $item?->exercise;

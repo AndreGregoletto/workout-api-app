@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             MusclesSeeder::class,
             WorkoutSeeder::class,
-            ExerciseSeeder::class
+            ExerciseSeeder::class,
+            WorkoutPivotetSeeder::class,
         ]);
         // php artisan db:seed
 

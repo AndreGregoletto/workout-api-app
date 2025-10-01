@@ -16,8 +16,11 @@ return new class extends Migration
             $table->string('name');                  
             $table->string('image')->nullable();     
             $table->string('description'); 
-            $table->string('cicle')->nullable();
+            $table->integer('cicle')->nullable();
             $table->string('duration')->nullable();
+            $table->integer('training_days')->nullable();
+            $table->integer('no_training_days')->nullable();
+            $table->boolean('weekend')->default(1);   
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->boolean('status')->default(1);   
             $table->timestamps();

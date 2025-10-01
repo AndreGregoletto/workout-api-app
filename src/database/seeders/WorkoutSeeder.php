@@ -16,7 +16,9 @@ class WorkoutSeeder extends Seeder
             'name' => 'PPL',
             'image' => null,
             'description' => 'Push, Pull, Legs',
-            'cicle' => '3',
+            'cicle' => '2',
+            'training_days' => '6',
+            'no_training_days' => '1',
             'duration' => "12",
             'user_id' => 1,
             'status' => 1
