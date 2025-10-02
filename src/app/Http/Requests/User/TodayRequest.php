@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Workout;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Auth;
 
-
-class CreateRequest extends FormRequest
+class TodayRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,13 +25,7 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'        => 'required|string|max:255',
-            'image'       => 'nullable|string|max:255',
-            'description' => 'nullable|string|max:255',
-            'cicle'       => 'required|string|max:255',
-            'duration'    => 'required|integer|min:1|max:120',
-            'date_start'  => 'required|date|date_format:Y-m-d|before_or_equal:today',
-            'status'      => 'required|boolean',
+            'date' => "nullable|date_format:Y-m-d|after_or_equal:today",
         ];
     }
 

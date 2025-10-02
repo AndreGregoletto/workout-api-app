@@ -366,4 +366,22 @@ class WorkoutPivotetController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    public function countDaysWorkout($id)
+    {
+        try {
+            $days = WorkoutPivotet::where('workout_id', $id)
+                ->where('status', 1)
+                ->groupBy('day_id')
+                ->get();
+
+            if(is_null($days)){
+                throw new \Exception("Treino nao encontrado", 1);
+            }
+
+            return response()->json(['days' => $days->count()], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }

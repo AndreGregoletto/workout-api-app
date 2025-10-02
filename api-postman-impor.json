@@ -26,12 +26,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url-api}}/{{auth}}/register",
+							"raw": "{{url-back-laravel}}/auth/register",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
-								"{{auth}}",
+								"auth",
 								"register"
 							]
 						}
@@ -83,13 +83,41 @@
 							}
 						},
 						"url": {
-							"raw": "{{url-api}}/{{auth}}/login",
+							"raw": "{{url-back-laravel}}/auth/login",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
-								"{{auth}}",
+								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{api_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url-back-laravel}}/auth/logout",
+							"host": [
+								"{{url-back-laravel}}"
+							],
+							"path": [
+								"auth",
+								"logout"
 							]
 						}
 					},
@@ -128,12 +156,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{url-api}}/{{user}}/body",
+									"raw": "{{url-back-laravel}}/user/body",
 									"host": [
-										"{{url-api}}"
+										"{{url-back-laravel}}"
 									],
 									"path": [
-										"{{user}}",
+										"user",
 										"body"
 									]
 								}
@@ -163,12 +191,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{url-api}}/{{user}}/body",
+									"raw": "{{url-back-laravel}}/user/body",
 									"host": [
-										"{{url-api}}"
+										"{{url-back-laravel}}"
 									],
 									"path": [
-										"{{user}}",
+										"user",
 										"body"
 									]
 								}
@@ -198,12 +226,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{url-api}}/{{user}}/body/1",
+									"raw": "{{url-back-laravel}}/user/body/1",
 									"host": [
-										"{{url-api}}"
+										"{{url-back-laravel}}"
 									],
 									"path": [
-										"{{user}}",
+										"user",
 										"body",
 										"1"
 									]
@@ -234,12 +262,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{url-api}}/{{user}}/body/1/edit",
+									"raw": "{{url-back-laravel}}/user/body/1/edit",
 									"host": [
-										"{{url-api}}"
+										"{{url-back-laravel}}"
 									],
 									"path": [
-										"{{user}}",
+										"user",
 										"body",
 										"1",
 										"edit"
@@ -273,12 +301,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{url-api}}/{{user}}/body/2",
+									"raw": "{{url-back-laravel}}/user/body/2",
 									"host": [
-										"{{url-api}}"
+										"{{url-back-laravel}}"
 									],
 									"path": [
-										"{{user}}",
+										"user",
 										"body",
 										"2"
 									]
@@ -306,12 +334,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{url-api}}/{{user}}/body/2",
+									"raw": "{{url-back-laravel}}/user/body/2",
 									"host": [
-										"{{url-api}}"
+										"{{url-back-laravel}}"
 									],
 									"path": [
-										"{{user}}",
+										"user",
 										"body",
 										"2"
 									]
@@ -349,12 +377,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{url-api}}/{{user}}/body",
+									"raw": "{{url-back-laravel}}/user/body",
 									"host": [
-										"{{url-api}}"
+										"{{url-back-laravel}}"
 									],
 									"path": [
-										"{{user}}",
+										"user",
 										"body"
 									]
 								}
@@ -384,12 +412,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{url-api}}/{{user}}/profile",
+									"raw": "{{url-back-laravel}}/user/profile",
 									"host": [
-										"{{url-api}}"
+										"{{url-back-laravel}}"
 									],
 									"path": [
-										"{{user}}",
+										"user",
 										"profile"
 									]
 								}
@@ -419,12 +447,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{url-api}}/{{user}}/profile/1",
+									"raw": "{{url-back-laravel}}/user/profile/1",
 									"host": [
-										"{{url-api}}"
+										"{{url-back-laravel}}"
 									],
 									"path": [
-										"{{user}}",
+										"user",
 										"profile",
 										"1"
 									]
@@ -455,12 +483,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{url-api}}/{{user}}/profile/1/edit",
+									"raw": "{{url-back-laravel}}/user/profile/1/edit",
 									"host": [
-										"{{url-api}}"
+										"{{url-back-laravel}}"
 									],
 									"path": [
-										"{{user}}",
+										"user",
 										"profile",
 										"1",
 										"edit"
@@ -494,12 +522,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{url-api}}/{{user}}/profile/1",
+									"raw": "{{url-back-laravel}}/user/profile/1",
 									"host": [
-										"{{url-api}}"
+										"{{url-back-laravel}}"
 									],
 									"path": [
-										"{{user}}",
+										"user",
 										"profile",
 										"1"
 									]
@@ -527,12 +555,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{url-api}}/{{user}}/body/2",
+									"raw": "{{url-back-laravel}}/user/body/2",
 									"host": [
-										"{{url-api}}"
+										"{{url-back-laravel}}"
 									],
 									"path": [
-										"{{user}}",
+										"user",
 										"body",
 										"2"
 									]
@@ -565,12 +593,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/{{user}}/me",
+							"raw": "{{url-back-laravel}}/user/me",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
-								"{{user}}",
+								"user",
 								"me"
 							]
 						}
@@ -600,13 +628,48 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/{{user}}/bodyActual",
+							"raw": "{{url-back-laravel}}/user/bodyActual",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
-								"{{user}}",
+								"user",
 								"bodyActual"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "workout",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{api_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url-back-laravel}}/user/workout",
+							"host": [
+								"{{url-back-laravel}}"
+							],
+							"path": [
+								"user",
+								"workout"
 							]
 						}
 					},
@@ -642,9 +705,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{url-api}}/muscleGroups",
+							"raw": "{{url-back-laravel}}/muscleGroups",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"muscleGroups"
@@ -676,9 +739,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/muscleGroups",
+							"raw": "{{url-back-laravel}}/muscleGroups",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"muscleGroups"
@@ -710,9 +773,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/muscleGroups/2",
+							"raw": "{{url-back-laravel}}/muscleGroups/2",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"muscleGroups",
@@ -745,9 +808,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/muscleGroups/2/edit",
+							"raw": "{{url-back-laravel}}/muscleGroups/2/edit",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"muscleGroups",
@@ -783,9 +846,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{url-api}}/muscleGroups/2",
+							"raw": "{{url-back-laravel}}/muscleGroups/2",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"muscleGroups",
@@ -815,9 +878,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/muscleGroups/2",
+							"raw": "{{url-back-laravel}}/muscleGroups/2",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"muscleGroups",
@@ -857,9 +920,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{url-api}}/muscle",
+							"raw": "{{url-back-laravel}}/muscle",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"muscle"
@@ -891,9 +954,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/muscle",
+							"raw": "{{url-back-laravel}}/muscle",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"muscle"
@@ -925,9 +988,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/muscle/2",
+							"raw": "{{url-back-laravel}}/muscle/2",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"muscle",
@@ -965,9 +1028,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{url-api}}/muscle/2/edit",
+							"raw": "{{url-back-laravel}}/muscle/2/edit",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"muscle",
@@ -1003,9 +1066,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{url-api}}/muscle/2",
+							"raw": "{{url-back-laravel}}/muscle/2",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"muscle",
@@ -1035,9 +1098,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/muscle/2",
+							"raw": "{{url-back-laravel}}/muscle/2",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"muscle",
@@ -1077,9 +1140,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{url-api}}/workout",
+							"raw": "{{url-back-laravel}}/workout",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"workout"
@@ -1111,9 +1174,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/workout",
+							"raw": "{{url-back-laravel}}/workout",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"workout"
@@ -1145,9 +1208,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/workout/3",
+							"raw": "{{url-back-laravel}}/workout/3",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"workout",
@@ -1180,9 +1243,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/workout/2/edit",
+							"raw": "{{url-back-laravel}}/workout/2/edit",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"workout",
@@ -1218,9 +1281,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{url-api}}/workout/1",
+							"raw": "{{url-back-laravel}}/workout/1",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"workout",
@@ -1250,9 +1313,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/workout/3",
+							"raw": "{{url-back-laravel}}/workout/3",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"workout",
@@ -1326,9 +1389,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{url-api}}/exercise",
+							"raw": "{{url-back-laravel}}/exercise",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"exercise"
@@ -1360,9 +1423,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/exercise",
+							"raw": "{{url-back-laravel}}/exercise",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"exercise"
@@ -1394,9 +1457,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/exercise/1",
+							"raw": "{{url-back-laravel}}/exercise/1",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"exercise",
@@ -1429,9 +1492,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/exercise/1/edit",
+							"raw": "{{url-back-laravel}}/exercise/1/edit",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"exercise",
@@ -1467,9 +1530,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{url-api}}/exercise/3",
+							"raw": "{{url-back-laravel}}/exercise/3",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"exercise",
@@ -1499,9 +1562,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/exercise/3",
+							"raw": "{{url-back-laravel}}/exercise/3",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"exercise",
@@ -1575,9 +1638,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{url-api}}/grouper",
+							"raw": "{{url-back-laravel}}/grouper",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"grouper"
@@ -1614,9 +1677,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{url-api}}/grouper/create",
+							"raw": "{{url-back-laravel}}/grouper/create",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"grouper",
@@ -1649,9 +1712,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/grouper",
+							"raw": "{{url-back-laravel}}/grouper",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"grouper"
@@ -1683,13 +1746,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/grouper/2",
+							"raw": "{{url-back-laravel}}/grouper/1",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"grouper",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -1718,9 +1781,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/grouper/1/edit",
+							"raw": "{{url-back-laravel}}/grouper/1/edit",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"grouper",
@@ -1756,9 +1819,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{url-api}}/grouper/9",
+							"raw": "{{url-back-laravel}}/grouper/9",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"grouper",
@@ -1788,9 +1851,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url-api}}/grouper/9",
+							"raw": "{{url-back-laravel}}/grouper/9",
 							"host": [
-								"{{url-api}}"
+								"{{url-back-laravel}}"
 							],
 							"path": [
 								"grouper",
@@ -1842,9 +1905,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url-api}}/ping",
+					"raw": "{{url-back-laravel}}/ping",
 					"host": [
-						"{{url-api}}"
+						"{{url-back-laravel}}"
 					],
 					"path": [
 						"ping"

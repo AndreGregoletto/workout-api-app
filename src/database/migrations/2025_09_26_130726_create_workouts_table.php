@@ -21,12 +21,13 @@ return new class extends Migration
             $table->integer('training_days')->nullable();
             $table->integer('no_training_days')->nullable();
             $table->boolean('weekend')->default(1);   
+            $table->date('date_start')->format('Y-m-d');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->boolean('status')->default(1);   
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      */

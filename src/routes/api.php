@@ -15,25 +15,22 @@ Route::get('/ping', function () {
     return response()->json(['message' => 'pong']);
 });
 
-
 Route::group(['prefix' => 'auth', 'controller' => AuthController::class], function () {
     Route::post('/login',       'login')->name('login');
     Route::post('/register', 'register')->name('register');
-    // Route::post('/register', 'logout')->name('register');
 
+    Route::get('/logout', 'logout')->middleware('auth:sanctum')->name('logout');
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/usuario', function () {
-        return 'ok';
-    });
-
     Route::group(['prefix' => 'user', 'controller' => UserController::class], function () {
         Route::resource('body',    UserBodyController::class);
         Route::resource('profile', ProfileController::class);
 
-        Route::get('/me',              'index')->name('user.me');
-        Route::get('/bodyActual', 'bodyActual')->name('user.bodyActual');
+        Route::get('/me',             'index')->name('user.me');
+        Route::post('/today',         'today')->name('user.today');
+        Route::get('/workout',      'workout')->name('user.workout');
+        Route::get('/bodyActual', 'bodyActal')->name('user.bodyActual');
     });
 
     Route::resource('muscleGroups', MuscleGroupsController::class);
