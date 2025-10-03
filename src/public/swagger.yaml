@@ -1,0 +1,736 @@
+openapi: 3.0.0
+info:
+  title: workout
+  description: API para gerenciamento de treino na academia
+  version: 1.0.0
+servers:
+  - url: http://{{url-back-laravel}}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: auth
+  - name: user
+  - name: user > body
+  - name: user > profile
+  - name: muscleGroups
+  - name: muscle
+  - name: workout
+  - name: exercise
+  - name: grouper
+paths:
+  /auth/register:
+    post:
+      tags:
+        - auth
+      summary: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Andre
+                email: andre@email.com
+                password: '12345678'
+                password_confirmation: '12345678'
+                cpf: '12345678901'
+                phone: '5511912345678'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: andre@email.com
+                password: '12345678'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/logout:
+    get:
+      tags:
+        - auth
+      summary: logout
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/body:
+    post:
+      tags:
+        - user > profile
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                height: '180'
+                weight: '82'
+                r_biceps: '39'
+                l_biceps: '39'
+                r_forearm: '22'
+                l_forearm: '22'
+                chest: '107'
+                waist: '87'
+                pelvic_girdle: '85'
+                r_thigh: '47'
+                l_thigh: '48'
+                r_shin: '34'
+                l_shin: '34'
+                shoulder_length: ''
+                measurement_date: '2025-01-10'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - user > body
+      summary: index
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/body/1:
+    get:
+      tags:
+        - user > body
+      summary: find
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/body/1/edit:
+    get:
+      tags:
+        - user > body
+      summary: edit
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/body/2:
+    patch:
+      tags:
+        - user > body
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                height: '180'
+                weight: '82'
+                r_biceps: '40'
+                l_biceps: '40'
+                r_forearm: '22'
+                l_forearm: '22'
+                chest: '107'
+                waist: '87'
+                pelvic_girdle: '85'
+                r_thigh: '47'
+                l_thigh: '48'
+                r_shin: '30'
+                l_shin: '30'
+                status: 1
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - user > profile
+      summary: inative
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/profile:
+    get:
+      tags:
+        - user > profile
+      summary: index
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/profile/1:
+    get:
+      tags:
+        - user > profile
+      summary: find
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - user > profile
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: André Rubens de Mello Gregoletto
+                social_name: O Lobo
+                email: andre@email.com
+                notification: 1
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/profile/1/edit:
+    get:
+      tags:
+        - user > profile
+      summary: edit
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/me:
+    get:
+      tags:
+        - user
+      summary: me
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/bodyActual:
+    get:
+      tags:
+        - user
+      summary: bodyActual
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/workout:
+    get:
+      tags:
+        - user
+      summary: workout
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /muscleGroups:
+    post:
+      tags:
+        - muscleGroups
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Pernas
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - muscleGroups
+      summary: index
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /muscleGroups/2:
+    get:
+      tags:
+        - muscleGroups
+      summary: find
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - muscleGroups
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                description: Costas por completo
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - muscleGroups
+      summary: inative
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /muscleGroups/2/edit:
+    get:
+      tags:
+        - muscleGroups
+      summary: edit
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /muscle:
+    post:
+      tags:
+        - muscle
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: supino reto Smith
+                description: fazer no Smith
+                muscle_group_id: 1
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - muscle
+      summary: index
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /muscle/2:
+    get:
+      tags:
+        - muscle
+      summary: find
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - muscle
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Supino Reto com Barra
+                status: 1
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - muscle
+      summary: inative
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /muscle/2/edit:
+    get:
+      tags:
+        - muscle
+      summary: edit
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /workout:
+    post:
+      tags:
+        - workout
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: PPL
+                image: PUSH PULL LEGS
+                description: Treino para ganhar volume muscular
+                cicle: '3'
+                duration: '12'
+                status: '1'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - workout
+      summary: index
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /workout/3:
+    get:
+      tags:
+        - workout
+      summary: find
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - workout
+      summary: inative
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /workout/2/edit:
+    get:
+      tags:
+        - workout
+      summary: edit
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /workout/1:
+    patch:
+      tags:
+        - workout
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                cicle: '3'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /exercise:
+    post:
+      tags:
+        - exercise
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Supino Reto com barra
+                workout_id: '1'
+                muscle_id: '1'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - exercise
+      summary: index
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /exercise/1:
+    get:
+      tags:
+        - exercise
+      summary: find
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /exercise/1/edit:
+    get:
+      tags:
+        - exercise
+      summary: edit
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /exercise/3:
+    patch:
+      tags:
+        - exercise
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Supino Reto
+                status: '0'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - exercise
+      summary: inative
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /grouper:
+    post:
+      tags:
+        - grouper
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                workout_id: '1'
+                exercise_id: 21
+                day_id: '3'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - grouper
+      summary: index
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /grouper/create:
+    get:
+      tags:
+        - grouper
+      summary: create
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /grouper/1:
+    get:
+      tags:
+        - grouper
+      summary: find
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /grouper/1/edit:
+    get:
+      tags:
+        - grouper
+      summary: edit
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /grouper/9:
+    patch:
+      tags:
+        - grouper
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                workout_id: '1'
+                exercise_id: '14'
+                day_id: 1
+                status: 1
+                ordering: 10
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - grouper
+      summary: inative
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /ping:
+    get:
+      tags:
+        - default
+      summary: ping
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
