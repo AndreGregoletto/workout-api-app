@@ -18,7 +18,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Andre\",\r\n    \"email\": \"andre@email.com\",\r\n    \"password\": \"12345678\",\r\n    \"password_confirmation\": \"12345678\",\r\n    \"cpf\": \"12345678901\",\r\n    \"phone\": \"5511977195214\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Andre\",\r\n    \"email\": \"andre@email.com\",\r\n    \"password\": \"12345678\",\r\n    \"password_confirmation\": \"12345678\",\r\n    \"cpf\": \"12345678901\",\r\n    \"phone\": \"5511912345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

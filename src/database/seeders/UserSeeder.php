@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             "email"       => "andre@email.com",
             "password"    => "12345678",
             "cpf"         => "12345678901",
-            "phone"       => "5511977195214",
+            "phone"       => "5511912345678",
             "date_birth"  => "1997-12-20",
             "admin"       => 1,
             "status"      => 1
