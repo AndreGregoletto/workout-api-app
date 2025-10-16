@@ -20,7 +20,7 @@ class WorkoutSeeder extends Seeder
             'training_days' => '6',
             'no_training_days' => '1',
             'duration' => "12",
-            'date_start' => "2025-09-30",
+            'date_start' => "2025-09-29",
             'user_id' => 1,
             'status' => 1
         ]);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DayExceptionController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\MuscleController;
 use App\Http\Controllers\WorkoutController;
@@ -23,14 +24,17 @@ Route::group(['prefix' => 'auth', 'controller' => AuthController::class], functi
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::group(['prefix' => 'user', 'controller' => UserController::class], function () {
-        Route::resource('body',    UserBodyController::class);
-        Route::resource('profile', ProfileController::class);
+    Route::group(['prefix' => 'user'], function () {
+        Route::resource('body',         UserBodyController::class);
+        Route::resource('profile',      ProfileController::class);
+        Route::resource('dayException', DayExceptionController::class);
 
-        Route::get('/me',             'index')->name('user.me');
-        Route::post('/today',         'today')->name('user.today');
-        Route::get('/workout',      'workout')->name('user.workout');
-        Route::get('/bodyActual', 'bodyActal')->name('user.bodyActual');
+        Route::group(['controller' => UserController::class], function () {
+            Route::get('/me',              'index')->name('user.me');
+            Route::post('/today',          'today')->name('user.today');
+            Route::get('/workout',       'workout')->name('user.workout');
+            Route::get('/bodyActual', 'bodyActual')->name('user.bodyActual');
+        });
     });
 
     Route::resource('muscleGroups', MuscleGroupsController::class);

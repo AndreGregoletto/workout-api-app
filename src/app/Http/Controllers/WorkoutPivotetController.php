@@ -298,8 +298,8 @@ class WorkoutPivotetController extends Controller
 
             $workoutPivotet = WorkoutPivotet::where('user_id', Auth::user()->id)
                 ->where('workout_id', $data['workout_id'] ?? $userWorkout->workout_id)
-                ->where('day_id', $aData['day_id'] ?? $userWorkout->day_id)
-                ->where('ordering', $aData['ordering'] ?? $userWorkout->ordering)
+                ->where('day_id',     $aData['day_id']    ?? $userWorkout->day_id)
+                ->where('ordering',   $aData['ordering']  ?? $userWorkout->ordering)
                 ->where('id', '!=', $id)
                 ->where('status', 1)
                 ->first();

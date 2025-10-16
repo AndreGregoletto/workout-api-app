@@ -1,3 +1,4 @@
-|  | - Criar os Exercicios e marcar grupo muscular, musculo alvo e usuario 
-|  | - Criar Swagger 
-|  | - Criar Ambiente para o front em Flutter 
+|   | - Criar os Exercicios e marcar grupo muscular, musculo alvo e usuario 
+| x | - Criar Swagger 
+| x | - Criar Ambiente para o front em Flutter 
+|   | - Implementar a regra de exception aos treinos

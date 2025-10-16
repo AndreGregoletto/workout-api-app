@@ -19,7 +19,7 @@ class WorkoutController extends Controller
         return response()->json(Workout::select(
             'id', 'name', 'description', 'image', 'cicle', 'duration',
             'date_start','training_days', 'no_training_days', 'weekend'
-        )->whereStatus(1)->first());
+        )->whereStatus(1)->whereUserId(Auth::user()->id)->first());
     }
 
     /**
@@ -66,7 +66,7 @@ class WorkoutController extends Controller
     public function show(string $id)
     {
         try {
-            $workout = Workout::whereStatus(1)->find($id);
+            $workout = Workout::whereStatus(1)->whereUserId(Auth::user()->id)->find($id);
 
             if(is_null($workout)){
                 throw new Exception("Treino não encontrado", 1);
