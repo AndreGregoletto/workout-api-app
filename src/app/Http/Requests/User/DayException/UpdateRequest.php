@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'went_workout' => 'required|boolean',
-            'date'         => 'required|date|date_format:Y-m-d|after_or_equal:today',
+            'date'         => 'sometimes|date|date_format:Y-m-d|after_or_equal:today',
             'workout_id'   => 'required|exists:workouts,id',
         ];
     }

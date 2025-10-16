@@ -11,18 +11,21 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    private $userBody;
     private $workout;
+    private $userBody;
+    private $dayException;
     private $workoutPivotet;
 
     public function __construct(
-        UserBodyController       $userBody,
         WorkoutController        $workout,
-        WorkoutPivotetController $workoutPivotet
+        UserBodyController       $userBody,
+        DayExceptionController   $dayException,
+        WorkoutPivotetController $workoutPivotet,
     )
     {
-        $this->userBody       = $userBody;
         $this->workout        = $workout;
+        $this->userBody       = $userBody;
+        $this->dayException   = $dayException;
         $this->workoutPivotet = $workoutPivotet;
     }
 
@@ -44,6 +47,11 @@ class UserController extends Controller
             $workoutToday = $this->today($request);
             if($workoutToday->getStatusCode() == 200){
                 $user->workoutActive[0]->workoutToday = $workoutToday->getData()->exercises;
+            }
+
+            $workout  = $this->workouts();
+            if($workout->getStatusCode() == 200){
+                $user->workoutActive[0]->workoutToday = $workout->getData();
             }
 
             return response()->json($user);
@@ -72,7 +80,6 @@ class UserController extends Controller
             $duration  = $oWorkout->duration;
             $endDate   = date("Y-m-d", strtotime("+$duration month", strtotime($startDate)));
             $bWeekend  = $oWorkout->weekend;
-
             $period = new DatePeriod(new DateTime($startDate), new DateInterval('P1D'), (new DateTime($endDate))->modify('+1 day'));
             $result = [];
 
@@ -92,18 +99,76 @@ class UserController extends Controller
                 $workout[$loop] = $find->getData()->exercises;
                 $loop++;
             }
-            
+
+            $exception  = $this->dayException->getByWorkout($oWorkout->id)->getData();
+            $aException = [];
+            if(!empty($exception)){
+                foreach ($exception as $key => $value) {
+                    $aException[$key] = [
+                        'date'         => $value->date,
+                        'went_workout' => $value->went_workout,
+                        'count'        => $value->count
+                    ];
+                }
+            }
+
             $loop = 1;
             foreach ($period as $date) {
-                $dayOfWeek = $date->format('N');
-                $result[$date->format('Y-m-d')] = (!$bWeekend && ($dayOfWeek == 6 || $dayOfWeek == 7)) 
-                    ? 0 
-                    : $workout[$loop]->$loop ?? [];
+                $key          = $date->format('Y-m-d');
+                $dayOfWeek    = $date->format('N');
+
+                if(!empty($aException)){
+                    if(isset($aException[$key])){
+                        if($aException[$key] == 0){
+                            $result[$key] = 'no workout';
+                            continue;
+                        }
+                        
+                        if($aException[$key]['count'] > 1){
+                            $a = 1;
+                            while ($a <= $aException[$key]['count']) {
+                                $result[$key][] = $workout[$loop]->$loop ?? [];
+                                $loop++;
+                                $loop = $loop > $countDaysWorkout ? 1 : $loop;
+                                $a++;
+                            }
+                            continue;
+                        }
+
+                        $result[$key] = $workout[$loop]->$loop ?? [];
+                        $loop++;
+                        $loop = $loop > $countDaysWorkout ? 1 : $loop;
+                        continue;
+                    }
+                }
+
+                if((!$bWeekend && ($dayOfWeek == 6 || $dayOfWeek == 7))){
+                    $result[$key] = 0;
+                    continue;    
+                }
+
+                $result[$key] = $workout[$loop]->$loop ?? [];
                 $loop++;
                 $loop = $loop > $countDaysWorkout ? 1 : $loop;
             }
-
+            
             return response()->json($result, 200);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 500);
+        }
+    }
+
+    public function workouts($date = null)
+    {
+        try {
+            $workout = $this->workout();
+
+            if($workout->getStatusCode() != 200){
+                throw new \Exception("Nao foi possivel carregar seus treinos", 1);
+            }
+            $date    = $date ?? date("Y-m-d");
+            $workout = $workout->getData();
+            return response()->json($workout->$date);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 500);
         }
@@ -112,39 +177,9 @@ class UserController extends Controller
     public function today(TodayRequest $request)
     {
         try {
-            $date = $request->input('date') ?? date("Y-m-d");
-            if (!$date) {
-                throw new \Exception("É necessário informar a data (Y-m-d).", 1);
-            }
-
-            $workout = $this->workout->index();
-            if ($workout->getStatusCode() != 200) {
-                throw new \Exception("Não foi possível carregar seu treino ativo", 2);
-            }
-
-            $oWorkout   = $workout->getData();
-            $startDate  = new DateTime($oWorkout->date_start);
-            $endDate    = new DateTime(date("Y-m-d", strtotime("+{$oWorkout->duration} month", strtotime($oWorkout->date_start))));
-            $targetDate = new DateTime($date);
-            if ($targetDate < $startDate || $targetDate > $endDate) {
-                throw new \Exception("Data fora do período do treino", 2);
-            }
-
-            $countDaysWorkout = $this->workoutPivotet->countDaysWorkout($oWorkout->id);
-            if ($countDaysWorkout->getStatusCode() != 200) {
-                throw new \Exception("Não foi possível carregar seus exercícios ativos", 3);
-            }
-            $countDaysWorkout = $countDaysWorkout->getData()->days;
-
-            $diffDays = $startDate->diff($targetDate)->days;
-            $dayIndex = ($diffDays % $countDaysWorkout) + 1;
-
-            $find = $this->workoutPivotet->show($dayIndex);
-            if ($find->getStatusCode() != 200) {
-                throw new \Exception("Não foi possível carregar seus exercícios ativos", 4);
-            }
-
-            $exercises = $find->getData()->exercises;
+            $date      = $request->input('date') ?? date("Y-m-d");
+            $workout   = $this->workouts($date);
+            $exercises = $workout->getStatusCode() == 200 ? $workout->getData() : [];
 
             return response()->json(['exercises'=> $exercises], 200);
         } catch (\Exception $e) {

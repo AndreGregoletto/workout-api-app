@@ -33,6 +33,46 @@ class DayExceptionController extends Controller
         return response()->json($response);
     }
 
+    public function getByWorkout($id)
+    {
+        $response = [];
+        try {
+            if(empty($id)){
+                throw new Exception("Treino inválido", 1);
+            }
+            $response = DayException::select('id', 'date', 'went_workout')
+                ->whereStatus(1)
+                ->whereUserId(Auth::user()->id)
+                ->whereWorkoutId($id)
+                ->where('date', '>=', date('Y-m-d'))
+                ->orderBy('date', 'asc')
+                ->get();
+
+            if(empty($response)){
+                throw new Exception("Nenhuma exceção encontrada", 1);
+            }
+
+            $i = 0;
+            $count = '';
+            $response = $response->mapWithKeys(function ($item) use (&$count, &$i) {
+                $i = $item['date'] == $count ? $i + 1 : 1;
+                $count = $item['date'];
+
+                $aResponse[$item['date']] = [
+                    'date'         => $item['date'],
+                    'went_workout' => $item['went_workout'],
+                    'count'        => $i
+                ];
+                return $aResponse;
+            });
+
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 500);
+        }
+        return response()->json($response);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */
